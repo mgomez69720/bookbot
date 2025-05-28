@@ -15,7 +15,6 @@ def get_character_count(text):
             ccount[chara.lower()] += 1
         else:
             ccount[chara.lower()] = 1
-            print(f"<<<< Initialize {chara.lower()}")
     return ccount
 
 
