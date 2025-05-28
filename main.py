@@ -1,4 +1,7 @@
 
+from stats import get_word_count
+
+
 
 filepath = "books/frankenstein.txt"
 
