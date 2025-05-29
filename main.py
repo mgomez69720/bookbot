@@ -1,32 +1,44 @@
 
 from stats import get_word_count
-from stats import get_character_count
-
+from stats import get_character_count_dict
+from stats import get_sorted_dict
 
 
 filepath = "books/frankenstein.txt"
 
 def get_book_text(fp):
-    #print(f">>>>>>>>>>>>> running get_book_text : {fp}")
+    # work WITH the provided "fp" file 
     with open(fp) as f:
-        #print(">>>>>>>>>>>>> with open filepath")
+        # return the text from the fp file as a string 
         return str(f.read())
     
-def get_word_count(whole_text):
-    wcount = 0
-    for word in whole_text.split():
-        wcount += 1
-    return wcount
+
 
 
 def main():
+    # book_text is the text of the whole book
     book_text = get_book_text(filepath)
-    #print (f"{book_text}")
+
+    # word_count is the number of words in the book
     word_count = get_word_count(book_text)
-    print (f"{word_count} words found in the document")
+    print (f"============ BOOKBOT ============")
+    print (f"Analyzing book found at {filepath}...")
+    print (f"----------- Word Count ----------")
+    print (f"Found {word_count} total words")
+    print (f"--------- Character Count -------")
 
-    chara_count = get_character_count(book_text)
-    print(f"{chara_count}")
+    # unsorted_dict    {'t': 29493, 'h': 19176, 'e': 44538, .... }
+    unsorted_dict = get_character_count_dict(book_text)
 
+    # sorted_dict is ordered list of dicts :
+    # [{'char': 'ZZ', 'num': '11'}, {'char': '//', 'num': '22'}, {'char': 'XX', 'num': '33'}] 
+    sorted_dicts_list = get_sorted_dict(unsorted_dict)
+
+    # prints each dict:chara+number in sorted_dicts_list if chara is an alphabetical character 
+    for i in range (0, len(sorted_dicts_list)):        
+        if sorted_dicts_list[i]["char"].isalpha():
+            print(f"{sorted_dicts_list[i]["char"]}: {sorted_dicts_list[i]["num"]}")
+
+    print("============= END ===============")
 
 main()

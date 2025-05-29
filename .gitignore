@@ -4,6 +4,7 @@ __pycache__
 *.env
 venv
 node_modules
+test.py
 
 
 # !important.txt  will not be ignored
