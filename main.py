@@ -3,8 +3,18 @@ from stats import get_word_count
 from stats import get_character_count_dict
 from stats import get_sorted_dict
 
+# import sys module, to have access to sys.argv and use argument when we call the bookbot program
+import sys
 
-filepath = "books/frankenstein.txt"
+#filepath = "books/frankenstein.txt"
+try:
+    filepath = sys.argv[1]
+except Exception as e:
+    print("Usage: python3 main.py <path_to_book>")
+    # sys.exit(1) = abnormal termination   (0) would be normal
+    sys.exit(1) 
+
+
 
 def get_book_text(fp):
     # work WITH the provided "fp" file 
@@ -41,4 +51,25 @@ def main():
 
     print("============= END ===============")
 
-main()
+    sys.exit(0) 
+
+
+
+
+# Print the name of the script
+#print("The script name is:", sys.argv)
+
+#print("The first command line argument is :", sys.argv[0])
+#print("The second command line argument is :", sys.argv[1])
+
+
+if len(sys.argv) == 2:
+    try:
+        main()
+    except Exception as e:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1) 
+else:
+    print("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+
